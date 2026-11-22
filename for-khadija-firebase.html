@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>For Khadija</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{--plum:#2a0a3d;--pink:#ff4f9a;--gold:#ffc857;--teal:#2ec4b6;--blush:#fff0f7;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html,body{height:100%;margin:0}
+body{background:linear-gradient(135deg,#2a0a3d,#7b1fa2 45%,#ff4f9a);background-size:220% 220%;animation:bg 14s ease infinite;color:var(--blush);font-family:Nunito,system-ui,sans-serif;display:grid;place-items:center;overflow:hidden}
+@keyframes bg{50%{background-position:100% 100%}}
+.sky{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.sky span{position:absolute;bottom:-40px;animation:rise linear forwards;opacity:.85}
+@keyframes rise{to{transform:translateY(-115vh) rotate(25deg);opacity:0}}
+.card{position:relative;width:min(92vw,420px);min-height:330px;padding:28px 24px 22px;border-radius:28px;background:rgba(42,10,61,.55);backdrop-filter:blur(10px);border:2px solid rgba(255,200,87,.6);box-shadow:0 0 40px rgba(255,79,154,.45);text-align:center}
+.step{display:none;flex-direction:column;align-items:center;gap:16px}
+.step.on{display:flex;animation:pop .5s cubic-bezier(.2,1.5,.4,1)}
+@keyframes pop{from{transform:scale(.8) rotate(-2deg);opacity:0}}
+h1{font-family:Pacifico,cursive;font-weight:400;font-size:2rem;line-height:1.25;margin:0;color:var(--gold);text-shadow:0 0 18px rgba(255,200,87,.5)}
+p{font-size:1.1rem;line-height:1.55;margin:0;max-width:34ch}
+button{font:800 1.05rem Nunito,system-ui,sans-serif;color:var(--plum);border:0;border-radius:999px;padding:14px 30px;cursor:pointer;background:linear-gradient(90deg,var(--gold),var(--pink));animation:beat 1.6s ease-in-out infinite;box-shadow:0 6px 20px rgba(255,79,154,.5)}
+button.alt{background:linear-gradient(90deg,var(--teal),#9be7ff)}
+button:focus-visible{outline:3px solid #fff;outline-offset:3px}
+@keyframes beat{50%{transform:scale(1.07)}}
+.row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+#answer{min-height:3.4em;color:var(--gold);font-weight:800}
+.dots{display:flex;gap:8px;justify-content:center;margin-top:22px}
+.dots i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.25);transition:.4s}
+.dots i.on{background:var(--gold);transform:scale(1.3)}
+#yes{animation:beg 1s ease-in-out infinite;font-size:1.2rem}
+.yeswrap{display:flex;flex-direction:column;align-items:center;gap:6px}
+#beg{font-size:.75rem;font-weight:800;color:var(--gold)}
+@keyframes beg{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-8px) rotate(-4deg)}75%{transform:translateY(-4px) rotate(4deg)}}
+#no{background:linear-gradient(90deg,#9aa0b5,#c9cde0);animation:none;box-shadow:none}
+#no.run{position:absolute}
+.quiet{background:none;box-shadow:none;animation:none;color:var(--blush);font-size:.9rem;text-decoration:underline;padding:6px 12px}
+.chips{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.chips button{padding:10px 18px;font-size:.95rem;animation:none;background:linear-gradient(90deg,var(--teal),#9be7ff)}
+#truth{min-height:2.8em;color:var(--gold);font-weight:800}
+
+.scene{position:fixed;inset:0;z-index:50;display:none;place-items:center;text-align:center;overflow:hidden;background:#000;color:#fff}
+.scene.on{display:grid;animation:fadein 1.2s both}
+@keyframes fadein{from{opacity:0}}
+.scene .rays{position:absolute;inset:-50%;background:repeating-conic-gradient(rgba(255,200,87,0) 0 8deg,rgba(255,200,87,.18) 8deg 16deg);animation:spin 30s linear infinite;opacity:0;transition:opacity 3s}
+.scene.reveal .rays{opacity:1}
+@keyframes spin{to{transform:rotate(360deg)}}
+.scene .stars{position:absolute;inset:0;background-image:radial-gradient(2px 2px at 20% 30%,#fff,transparent),radial-gradient(2px 2px at 70% 20%,#fff,transparent),radial-gradient(1.5px 1.5px at 40% 70%,#fff,transparent),radial-gradient(2px 2px at 85% 60%,#fff,transparent),radial-gradient(1.5px 1.5px at 10% 85%,#fff,transparent);animation:twinkle 3s ease-in-out infinite}
+@keyframes twinkle{50%{opacity:.35}}
+.stage{position:relative;z-index:2;padding:0 20px;max-width:520px}
+.line{font-family:Pacifico,cursive;font-size:1.7rem;line-height:1.4;margin:0;animation:lineIn 2.6s both}
+@keyframes lineIn{0%{opacity:0;transform:translateY(14px) scale(.96);filter:blur(6px)}20%,75%{opacity:1;transform:none;filter:none}100%{opacity:0;transform:translateY(-10px);filter:blur(4px)}}
+.big{font-family:Pacifico,cursive;font-size:clamp(3.2rem,18vw,6rem);color:var(--gold);text-shadow:0 0 30px var(--pink),0 0 70px var(--gold);animation:slam 1.4s cubic-bezier(.2,1.6,.3,1) both}
+.big.small{font-size:2.4rem}
+@keyframes slam{from{opacity:0;transform:scale(3) rotate(-6deg);filter:blur(12px)}}
+.ar{font-size:2.6rem;margin:8px 0;text-shadow:0 0 20px var(--gold);animation:fadein 2s 1s both}
+.thx,.sub{animation:fadein 2s 1.8s both}
+.thx{font-size:1.5rem;font-weight:800;color:var(--gold);margin:8px auto}
+.sub{margin:10px auto}
+.scene.yes{background:radial-gradient(circle at 50% 40%,#5b1a7a,#12031f 70%)}
+.scene.wait{background:radial-gradient(circle at 50% 30%,#10204a,#04050f 75%)}
+.glass{font-size:4.5rem;animation:flip 3s ease-in-out infinite}
+@keyframes flip{0%,40%{transform:rotate(0)}60%,100%{transform:rotate(180deg)}}
+.dotsw i{display:inline-block;width:8px;height:8px;margin:0 4px;border-radius:50%;background:var(--gold);animation:dotb 1.2s infinite}
+.dotsw i:nth-child(2){animation-delay:.2s}
+.dotsw i:nth-child(3){animation-delay:.4s}
+@keyframes dotb{50%{transform:translateY(-8px);opacity:.4}}
+.fx{position:absolute;bottom:-40px;z-index:1;animation:rise linear forwards}
+.flash{position:absolute;inset:0;background:#fff;z-index:3;animation:flashout 1s both}
+@keyframes flashout{from{opacity:1}to{opacity:0}}
+@media (prefers-reduced-motion:reduce){body,button,#yes,.step.on{animation:none}.sky{display:none}}
+</style></head>
+<body>
+<div class="sky" id="sky"></div>
+<main class="card">
+  <section class="step on">
+    <h1>Assalamu alaikum, cutie 🌸</h1>
+    <p>I made something for you. Tap the button and take your time.</p>
+    <button data-next>Open it</button>
+    <p style="font-size:.8rem;opacity:.8">psst… I can see what you tap 😏</p>
+  </section>
+  <section class="step">
+    <h1>Okay, I’ll be honest</h1>
+    <p>I had a whole speech ready, then I thought of your smile and forgot every word. 😅</p>
+    <button data-next>Next</button>
+  </section>
+  <section class="step">
+    <h1>Quick question, cutie</h1>
+    <p>Is it legal to be this pretty? Because my heart wants to file a complaint. 🚨</p>
+    <button data-next>Next</button>
+  </section>
+  <section class="step">
+    <h1>I tried to stay cool</h1>
+    <p>I really did. But you walk into my thoughts like you pay rent there. 🏠💭</p>
+    <button data-next>Next</button>
+  </section>
+  <section class="step">
+    <h1>Three little truths</h1>
+    <div class="chips">
+      <button data-truth="It could power my whole solar box. ⚡">Your smile</button>
+      <button data-truth="I get lost in them, and I have no map. 🗺️">Your eyes</button>
+      <button data-truth="Calm, sweet, and dangerous for my focus. 😵">Your vibe</button>
+    </div>
+    <p id="truth">Tap each one, cutie.</p>
+    <button data-next>Next</button>
+  </section>
+  <section class="step">
+    <h1>A small promise</h1>
+    <p>I promise to keep working hard, to respect you, and to do things the right way.</p>
+    <button data-next>Next</button>
+  </section>
+  <section class="step">
+    <h1>One more thing…</h1>
+    <p>I built this myself, one line of code at a time. The last line is the most honest one.</p>
+    <button data-next>Show me</button>
+  </section>
+  <section class="step">
+    <h1>Cutie, I love you 💖</h1>
+    <p>I say it with respect and with serious intentions. So… will you say yes?</p>
+    <div class="row">
+      <div class="yeswrap"><small id="beg">Click me, cutie 🥺</small><button id="yes" data-reply="Alhamdulillah. Then let’s do this the right way. 💜">Yes 💖</button></div>
+      <button id="no">No 😏</button>
+    </div>
+    <button class="quiet" data-reply="Take all the time you need. I respect you either way. 🌸">I need time</button>
+    <p id="answer" aria-live="polite"></p>
+  </section>
+  <div class="dots" id="dots"></div>
+</main>
+<div class="scene" id="scene" role="status"></div>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+const steps=[...document.querySelectorAll('.step')],dots=document.getElementById('dots'),sky=document.getElementById('sky');
+let i=0;
+steps.forEach(()=>dots.append(document.createElement('i')));
+function heart(){
+  const h=document.createElement('span');
+  h.textContent=['💖','💜','✨','🌸'][Math.random()*4|0];
+  h.style.left=Math.random()*100+'%';
+  h.style.fontSize=(14+Math.random()*22)+'px';
+  h.style.animationDuration=(6+Math.random()*6)+'s';
+  sky.append(h);
+  setTimeout(()=>h.remove(),12000);
+}
+function show(n){
+  i=n;
+  log('step',steps[n].querySelector('h1').textContent);
+  steps.forEach((s,k)=>s.classList.toggle('on',k===n));
+  [...dots.children].forEach((d,k)=>d.classList.toggle('on',k<=n));
+  if(n===steps.length-1)for(let k=0;k<30;k++)setTimeout(heart,k*80);
+}
+document.querySelectorAll('[data-next]').forEach(b=>b.onclick=()=>show(i+1));
+
+const sc=document.getElementById('scene');
+const films={
+  yes:{cls:'yes',lines:['Bismillah…','Some answers change a whole life.','She looked at the screen…','And she tapped…'],
+    reveal:'<div class="big">YES 💖</div><div class="ar">الحمد لله</div><p class="thx">Thank You, Allah 🤲</p><p class="sub">Thank you, cutie. You just made me the happiest man alive.</p>'},
+  wait:{cls:'wait',lines:['Take your time, cutie…','Good things are worth waiting for.','Patience is beautiful too…'],
+    reveal:'<div class="glass">⏳</div><div class="big small">I’ll be waiting…</div><p class="sub">Take all the time you need. I respect you either way. 🌙<br><span class="dotsw"><i></i><i></i><i></i></span></p><button class="quiet" id="backBtn">Go back</button>'}
+};
+let fxTimer;
+function spark(list){
+  const h=document.createElement('span');
+  h.className='fx';
+  h.textContent=list[Math.random()*list.length|0];
+  h.style.left=Math.random()*100+'%';
+  h.style.fontSize=(16+Math.random()*28)+'px';
+  h.style.animationDuration=(5+Math.random()*5)+'s';
+  sc.append(h);
+  setTimeout(()=>h.remove(),11000);
+}
+function party(k){
+  clearInterval(fxTimer);
+  const L=k==='yes'?['🎆','✨','💖','🎉','🌸','🤲']:['🏮','🌙','✨','⭐'];
+  if(k==='yes'){const f=document.createElement('div');f.className='flash';sc.append(f);setTimeout(()=>f.remove(),1100)}
+  for(let n=0;n<40;n++)setTimeout(()=>spark(L),n*60);
+  fxTimer=setInterval(()=>spark(L),k==='yes'?250:700);
+}
+function scene(k){
+  const f=films[k];
+  clearInterval(fxTimer);
+  sc.className='scene on '+f.cls;
+  sc.innerHTML='<div class="rays"></div><div class="stars"></div><div class="stage"></div>';
+  const st=sc.querySelector('.stage');
+  let t=500;
+  f.lines.forEach(l=>{setTimeout(()=>{st.innerHTML='<p class="line">'+l+'</p>'},t);t+=2600});
+  setTimeout(()=>{
+    st.innerHTML=f.reveal;
+    sc.classList.add('reveal');
+    party(k);
+    const bb=document.getElementById('backBtn');
+    if(bb)bb.onclick=()=>{clearInterval(fxTimer);sc.className='scene';sc.innerHTML=''};
+  },t);
+}
+document.querySelectorAll('[data-reply]').forEach(b=>b.onclick=()=>{
+  const k=b.id==='yes'?'yes':'wait';
+  log('answer',k==='yes'?'YES':'NEEDS TIME');
+  scene(k);
+});
+const sid=Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+// PASTE YOUR FIREBASE CONFIG HERE (Firebase console > Project settings > Your apps > Web)
+const firebaseConfig={
+  apiKey:"AIzaSyBPY0U6bM16SnsJlR_SQOFmF6_kGzNKL7k",
+  authDomain:"ask-a-date-11baf.firebaseapp.com",
+  projectId:"ask-a-date-11baf",
+  storageBucket:"ask-a-date-11baf.firebasestorage.app",
+  messagingSenderId:"733806061987",
+  appId:"1:733806061987:web:382442a5c17ec8445e5216"
+};
+let fdb=null;
+try{firebase.initializeApp(firebaseConfig);fdb=firebase.firestore()}catch(e){}
+function log(ev,label){
+  if(!fdb)return;
+  fdb.collection('clicks').add({ev,label,sid,at:firebase.firestore.FieldValue.serverTimestamp()}).catch(()=>{});
+}
+document.addEventListener('click',e=>{const bt=e.target.closest('button');if(bt&&bt.id!=='no')log('tap',bt.textContent.trim())});
+const beg=document.getElementById('beg'),yes=document.getElementById('yes'),no=document.getElementById('no'),card=document.querySelector('.card');
+const begs=['Click me, cutie 🥺','Please, I’m begging 😭','Help me, tap me! 🆘','I’m so lonely here 🥹','Say yes, I’m shy 🙈'];
+let b=0;
+setInterval(()=>{if(steps[i].contains(yes)){b=(b+1)%begs.length;beg.textContent=begs[b]}},1600);
+function run(e){
+  e.preventDefault();
+  const c=card.getBoundingClientRect();
+  no.classList.add('run');log('no-dodge','tried to press No');
+  no.textContent=['No 😏','Try again 😜','Too slow 💨','Nope 🙈'][Math.random()*4|0];
+  no.style.left=(10+Math.random()*(c.width-no.offsetWidth-20))+'px';
+  no.style.top=(10+Math.random()*(c.height-no.offsetHeight-20))+'px';
+}
+['mouseenter','touchstart','click'].forEach(ev=>no.addEventListener(ev,run,{passive:false}));
+document.querySelectorAll('[data-truth]').forEach(c=>c.onclick=()=>{document.getElementById('truth').textContent=c.dataset.truth});
+show(0);
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches)setInterval(heart,700);
+</script>
+</body></html>
